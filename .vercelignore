@@ -1,0 +1,50 @@
+# Ignore development files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Ignore Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Ignore virtual environments
+venv/
+env/
+ENV/
+
+# Ignore IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore logs
+*.log
+logs/
+
+# Ignore temporary files
+*.tmp
+*.temp
+
+# Ignore uploaded files during development
+uploads/*.wav
+uploads/*.mp3
+uploads/*.webm
+
+# Keep example files
+!uploads/.gitkeep
+
+# Ignore node modules if any
+node_modules/
+
+# Ignore build artifacts
+dist/
+build/
