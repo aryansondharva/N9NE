@@ -2,8 +2,12 @@ services:
   - type: web
     name: murf-ai-app
     env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    region: oregon
+    plan: starter
+    buildCommand: |
+      pip install --upgrade pip
+      pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT --workers 1
     envVars:
       - key: GEMINI_API_KEY
         sync: false
@@ -13,7 +17,11 @@ services:
         sync: false
       - key: ENVIRONMENT
         value: production
+      - key: PYTHONPATH
+        value: /opt/render/project/src
     disk:
       name: uploads-disk
-      mountPath: /app/uploads
+      mountPath: /opt/render/project/src/uploads
       sizeGB: 1
+    healthCheckPath: /
+    autoDeploy: true
