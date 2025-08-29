@@ -1,0 +1,61 @@
+# Git
+.git
+.gitignore
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Node modules
+node_modules/
+
+# Build artifacts
+dist/
+build/
+
+# Vercel files (not needed for Render)
+vercel.json
+.vercel/
+.vercelignore
+
+# Documentation
+README.md
+*.md
+
+# Test files
+tests/
+test_*
+*_test.py
