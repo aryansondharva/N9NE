@@ -11,14 +11,19 @@ services:
     envVars:
       - key: GEMINI_API_KEY
         sync: false
+        generateValue: false
       - key: ASSEMBLYAI_API_KEY
         sync: false
+        generateValue: false
       - key: MURF_API_KEY
         sync: false
+        generateValue: false
       - key: ENVIRONMENT
         value: production
       - key: PYTHONPATH
         value: /opt/render/project/src
+      - key: PYTHONUNBUFFERED
+        value: "1"
     disk:
       name: uploads-disk
       mountPath: /opt/render/project/src/uploads

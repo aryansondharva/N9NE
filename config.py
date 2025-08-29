@@ -32,21 +32,30 @@ def get_api_key(key: str) -> Optional[str]:
 
 def configure_apis():
     """Configure all APIs with current keys."""
-    # Configure AssemblyAI
-    if _api_keys.get("ASSEMBLYAI_API_KEY"):
-        aai.settings.api_key = _api_keys["ASSEMBLYAI_API_KEY"]
-    else:
-        logging.warning("ASSEMBLYAI_API_KEY not configured.")
-    
-    # Configure Gemini AI
-    if _api_keys.get("GEMINI_API_KEY"):
-        genai.configure(api_key=_api_keys["GEMINI_API_KEY"])
-    else:
-        logging.warning("GEMINI_API_KEY not configured.")
-    
-    # Murf API key is accessed directly via get_api_key function
-    if not _api_keys.get("MURF_API_KEY"):
-        logging.warning("MURF_API_KEY not configured.")
+    try:
+        # Configure AssemblyAI
+        if _api_keys.get("ASSEMBLYAI_API_KEY"):
+            aai.settings.api_key = _api_keys["ASSEMBLYAI_API_KEY"]
+            logging.info("AssemblyAI API configured successfully.")
+        else:
+            logging.warning("ASSEMBLYAI_API_KEY not configured. Speech-to-text features will be disabled.")
+        
+        # Configure Gemini AI
+        if _api_keys.get("GEMINI_API_KEY"):
+            genai.configure(api_key=_api_keys["GEMINI_API_KEY"])
+            logging.info("Gemini AI API configured successfully.")
+        else:
+            logging.warning("GEMINI_API_KEY not configured. AI chat features will be disabled.")
+        
+        # Murf API key is accessed directly via get_api_key function
+        if _api_keys.get("MURF_API_KEY"):
+            logging.info("Murf API key configured successfully.")
+        else:
+            logging.warning("MURF_API_KEY not configured. Text-to-speech features will be disabled.")
+            
+    except Exception as e:
+        logging.error(f"Error configuring APIs: {e}")
+        # Don't raise exception to allow app to start
 
 # Legacy exports for backward compatibility
 MURF_API_KEY = _api_keys["MURF_API_KEY"]
